@@ -39,13 +39,14 @@ def score_age(dict, datapoint):  # datapoint is a rolling count for each collect
             submission_dict[post][0][1]), 2)]
 
 
-while harvests < 30:  # Multiply by sleep duration for total harvest window.
+while harvests < 72:  # Multiply by sleep duration for total harvest window.
     harvests += 1
     print('Harvest no.: {}'.format(harvests))
     score_age(submission_dict, harvests)
     with open(cwd + '/Files/scores.json', 'w') as f:
         json.dump(submission_dict, f)
-    sleep(115)  # Time between harvests (here, 2 minutes minus est. fetch time)
+    sleep(295)  # Time between harvests (here, 5 minutes minus est. fetch time)
+
 
 # print(submission_dict)
 # for each in submission_dict:
