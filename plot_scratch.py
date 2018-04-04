@@ -23,5 +23,7 @@ for id in data:
             inner_y.append(data[id][dp][0])
     plt.plot(inner_x, inner_y)
 
+plt.ylabel('Karma')
+plt.xlabel('Post age (minutes)')
 plt.show()
 
