@@ -24,6 +24,7 @@ for id in data:
     plt.plot(inner_x, inner_y)
 
 plt.title('Karma over time for 50 r/Showerthoughts posts')
+# plt.axis([0, 450, 0, 100])  # to visualize the little guys.
 plt.ylabel('Karma')
 plt.xlabel('Post age (minutes)')
 plt.show()

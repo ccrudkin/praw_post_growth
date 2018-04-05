@@ -14,13 +14,13 @@ reddit = praw.Reddit(client_id=config['client_id'],
                      client_secret=config['client_secret'],
                      user_agent=config['user_agent'])
 
-subreddit = reddit.subreddit('showerthoughts')
+subreddit = reddit.subreddit('mildlyinteresting')
 harvests = 0
 submission_dict = {}
 # Internal format: 'post_id_nnn': {'datapoint_nnn': [score, age]}
 # NOTE: for 'post_id_nnn'[0], age == created (time in seconds UTC); exclude from data analysis
 
-for submission in subreddit.new(limit=50):  # up to 1000
+for submission in subreddit.new(limit=100):  # up to 1000
     submission_dict[submission.id] = {}
     submission_dict[submission.id][0] = [submission.score, submission.created]
     # print(dir(submission))  # for debugging and finding possible methods
@@ -39,7 +39,7 @@ def score_age(dict, datapoint):  # datapoint is a rolling count for each collect
             submission_dict[post][0][1]), 2)]
 
 
-while harvests < 72:  # Multiply by sleep duration for total harvest window.
+while harvests < 144:  # Multiply by sleep duration for total harvest window.
     harvests += 1
     print('Harvest no.: {}'.format(harvests))
     score_age(submission_dict, harvests)
