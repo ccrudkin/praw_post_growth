@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 import json
+import os
 
 # l = list(range(0, 11))
 # ltwo = [x ** 2 for x in l]
@@ -9,7 +10,7 @@ import json
 # plt.plot(l, ltwo, b, bthree)
 # plt.show()
 
-with open('C:/Users/ccrud/PycharmProjects/reddit_bot/praw_post_growth/Files/scores.json', 'r') as f:
+with open(os.getcwd() + '/Files/scores.json', 'r') as f:
     data = json.load(f)
 
 csv_data = []
@@ -21,10 +22,12 @@ for id in data:
         if dp != '0':
             inner_x.append(data[id][dp][1])
             inner_y.append(data[id][dp][0])
-    plt.plot(inner_x, inner_y)
+    lines = plt.plot(inner_x, inner_y)
+    plt.setp(lines, linewidth=2.0)
 
-plt.title('Karma over time for 50 r/Showerthoughts posts')
-# plt.axis([0, 450, 0, 100])  # to visualize the little guys.
+plt.title('Karma over time for 100 r/mildlyinteresting posts')
+plt.axis([0, 1100, 0, 100000])  # to visualize the little guys.
+plt.xticks(range(0, 1200, 60))
 plt.ylabel('Karma')
 plt.xlabel('Post age (minutes)')
 plt.show()
